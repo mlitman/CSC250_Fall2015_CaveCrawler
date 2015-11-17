@@ -8,4 +8,10 @@ public class JSONObjectVariable extends JSONVariable
 		super(name);
 		this.value = value;
 	}
+
+	void display() 
+	{
+		System.out.println(this.name +" -> ");
+		this.value.display();
+	}
 }

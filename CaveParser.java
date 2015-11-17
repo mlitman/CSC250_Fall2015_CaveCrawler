@@ -20,6 +20,7 @@ public class CaveParser
 			{
 				this.theJSON = this.theJSON + input.nextLine();
 			}
+			this.theJSON = this.theJSON.trim();
 			System.out.println(this.theJSON);
 		} 
 		catch (Exception e) 
@@ -45,7 +46,8 @@ public class CaveParser
 	//moves currPos to the position of the next c in theJSON
 	private void advanceToNextChar(char c)
 	{
-		while(this.theJSON.charAt(this.currPos) != c)
+		while(this.currPos < this.theJSON.length() && 
+				this.theJSON.charAt(this.currPos) != c)
 		{
 			this.currPos++;
 		}
@@ -76,7 +78,8 @@ public class CaveParser
 		}
 		else
 		{
-			return "I don't know!!!!";
+			//I'm looking at a number
+			return "Number";
 		}
 	}
 	
@@ -91,6 +94,21 @@ public class CaveParser
 		return value;
 	}
 	
+	//gets the next value as an int
+	private int getNumberValue()
+	{
+		//read in value
+		String answer = "";
+		while(this.theJSON.charAt(this.currPos) != ',' && 
+				this.theJSON.charAt(this.currPos) != '}')
+		{
+			answer += this.theJSON.charAt(this.currPos);
+			this.currPos++;
+		}
+		answer = answer.trim();
+		return Integer.parseInt(answer);
+	}
+		
 	private JSONObject getObjectValue()
 	{	
 		while(this.currPos < this.theJSON.length())
@@ -125,7 +143,7 @@ public class CaveParser
 		String name = this.theJSON.substring(pos, this.currPos);
 		
 		//move to the separator
-		this.advanceToNextChar(':');
+		this.advancePastNextChar(':');
 		
 		//What kind of value do we need to read?
 		String type = this.getValueType();
@@ -141,6 +159,11 @@ public class CaveParser
 			JSONObjectVariable theVariable = new JSONObjectVariable(name, theObject);
 			return theVariable;
 			//we need to get this into a JSONVariable now
+		}
+		else if(type.equals("Number"))
+		{
+			JSONNumberVariable theVariable = new JSONNumberVariable(name, this.getNumberValue());
+			return theVariable;
 		}
 		return null;
 	}

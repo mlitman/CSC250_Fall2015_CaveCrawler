@@ -8,4 +8,8 @@ public class JSONStringVariable extends JSONVariable
 		super(name);
 		this.value = value;
 	}
+	public void display()
+	{
+		System.out.println("String : " + this.name + " -> " + this.value);
+	}
 }
