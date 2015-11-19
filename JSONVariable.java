@@ -9,4 +9,6 @@ public abstract class JSONVariable
 	}
 	
 	abstract void display();
+	
+	abstract String exportToJSON();
 }

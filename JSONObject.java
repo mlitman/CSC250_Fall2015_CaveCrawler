@@ -26,6 +26,16 @@ public class JSONObject
 		{
 			this.theVariables[i].display();
 		}
-		
+	}
+	
+	public String exportToJSON()
+	{
+		String answer = "{";
+		for(int i = 0; i < this.currSize; i++)
+		{
+			answer += this.theVariables[i].exportToJSON();
+		}
+		answer += "}";
+		return answer;
 	}
 }
