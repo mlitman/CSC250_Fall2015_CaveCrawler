@@ -21,7 +21,6 @@ public class CaveParser
 				this.theJSON = this.theJSON + input.nextLine();
 			}
 			this.theJSON = this.theJSON.trim();
-			System.out.println(this.theJSON);
 		} 
 		catch (Exception e) 
 		{

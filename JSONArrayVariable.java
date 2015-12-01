@@ -10,6 +10,15 @@ public class JSONArrayVariable extends JSONVariable
 		this.currSize = 0;
 	}
 	
+	public JSONObject[] getValue() 
+	{
+		return value;
+	}
+
+	public int getCurrSize() {
+		return currSize;
+	}
+
 	public void addJSONObject(JSONObject obj)
 	{
 		this.value[this.currSize] = obj;
@@ -24,5 +33,21 @@ public class JSONArrayVariable extends JSONVariable
 		{
 			this.value[i].display();
 		}
+	}
+
+	@Override
+	String exportToJSON() 
+	{
+		String answer = "\"" + this.name + "\": [";
+		for(int i = 0; i < this.currSize; i++)
+		{
+			answer += this.value[i].exportToJSON();
+			if(i != this.currSize-1)
+			{
+				answer += ",";
+			}
+		}
+		answer += " ]";
+		return answer;
 	}
 }

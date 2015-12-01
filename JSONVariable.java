@@ -8,6 +8,12 @@ public abstract class JSONVariable
 		this.name = name;
 	}
 	
+	
+	public String getName() {
+		return name;
+	}
+
+
 	abstract void display();
 	
 	abstract String exportToJSON();

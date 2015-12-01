@@ -9,9 +9,23 @@ public class JSONObjectVariable extends JSONVariable
 		this.value = value;
 	}
 
+	
+	public JSONObject getValue() {
+		return value;
+	}
+
+
 	void display() 
 	{
 		System.out.println(this.name +" -> ");
 		this.value.display();
+	}
+
+	@Override
+	String exportToJSON() 
+	{
+		String answer = "\"" + this.name + "\":";
+		answer += this.value.exportToJSON();
+		return answer;
 	}
 }
