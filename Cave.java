@@ -25,6 +25,23 @@ public class Cave
 		{
 			CaveCore.theRooms[i] = new Room(theObjects[i]);
 		}
+		
+		//Let CaveCore know about this Cave
+		CaveCore.theCave = this;
+	}
+	
+	public JSONObject toJSON()
+	{
+		JSONObject theObj = new JSONObject();
+		theObj.addVariable(new JSONNumberVariable("startRoomID", this.startRoomID));
+		JSONArrayVariable theRooms = new JSONArrayVariable("rooms");
+		//fill our theRooms variable
+		for(Room r : CaveCore.theRooms)
+		{
+			theRooms.addJSONObject(r.getJSONObject());
+		}
+		theObj.addVariable(theRooms);
+		return theObj;
 	}
 	
 	public void addPlayer(Player p)

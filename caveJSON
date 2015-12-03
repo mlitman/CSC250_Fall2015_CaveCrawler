@@ -1,9 +1,1 @@
-{
-  "startRoomID":0,
-  "rooms":[
-    { "id": 0, "name":"The Cave Entrance", "exits":[
-        {"name":"north", "destinationID":1}]},
-    { "id":1, "name" : "Room 2", "exits":[
-        {"name":"south", "destinationID":0}]}                            										
-  ]
-}
+{"startRoomID":0,"rooms": [{"id":0,"name":"The Cave Entrance","exits": [{"name":"north","destinationID":1},{"name":"up","destinationID":2} ]},{"id":1,"name":"Room 2","exits": [{"name":"south","destinationID":0} ]},{"id":2,"name":"The Loft","exits": [{"name":"down","destinationID":0} ]} ]}
